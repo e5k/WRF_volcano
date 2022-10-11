@@ -282,6 +282,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#wrf-documentation" class="md-nav__link">
+    WRF documentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#download-era5-data" class="md-nav__link">
     Download ERA5 data
   </a>
@@ -377,6 +384,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#wrf-documentation" class="md-nav__link">
+    WRF documentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#download-era5-data" class="md-nav__link">
     Download ERA5 data
   </a>
@@ -443,31 +457,59 @@
 <ul>
 <li><a href="https://doc.eresearch.unige.ch/hpc/start">Yggdrasil</a> (Université de Genève)</li>
 </ul>
+<h3 id="wrf-documentation">WRF documentation</h3>
+<ul>
+<li>📖 <a href="https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.4/contents.html">WRF user guide</a></li>
+</ul>
 <h3 id="download-era5-data">Download ERA5 data</h3>
 <ul>
-<li>Using MARS (&rarr; UNIGE users)</li>
+<li>
+<p>Using MARS (&rarr; UNIGE users)</p>
+</li>
+<li>
+<p>ERA5 data should be placed in <code>/srv/beegfs/scratch/shares/wrf_volcano/MET/ERA5/case_name</code></p>
+</li>
 </ul>
 <h2 id="setup-a-run">Setup a run</h2>
 <ol>
-<li>On the cluster, create a <code>WRF/</code> folder somewhere on the <code>scratch</code> partition</li>
-<li>Copy/clone script from <code>/srv/beegfs/scratch/shares/wrf_volcano/</code></li>
-<li>Run <code>./setup_wrf.sh case_name</code>, where <code>case_name</code> is your project/case name</li>
+<li>On the cluster Copy/clone script from <code>/srv/beegfs/scratch/shares/wrf_volcano/</code>.</li>
+<li>
+<p>Run <code>./setup_wrf.sh case_name</code>, where <code>case_name</code> is your project/case name. This will:</p>
+<ol>
+<li>Create a folder named <code>WRF_projects/case_name/</code> both on <code>HOME</code> and on <code>scratch</code>. </li>
+<li>The folder on the <code>HOME</code> partition contains the config files (i.e., <code>namelist.*</code>) and are backed up.</li>
+<li>The folder on the <code>scratch</code> partition contains the <code>WPS/</code> and <code>WRF/</code> folders, which will store most of the data.</li>
 </ol>
-<p>This step creates a <code>case_name/</code> directory populated with <code>WPS/</code> and <code>WRF/</code> folders.</p>
+</li>
+</ol>
 <h3 id="overview-of-the-wrf-workflow">Overview of the WRF workflow</h3>
+<p>The process of running WRF consists of two steps:</p>
+<ol>
+<li>Pre-processing using the WRF Preprocessing System (<code>WPS</code>):</li>
+</ol>
+<blockquote>
+<p>WPS is a set of three programs whose collective role is to prepare input for real-data simulations</p>
+</blockquote>
+<ol>
+<li>Running <code>WRF</code>.</li>
+</ol>
 <pre class="mermaid"><code>flowchart TD
 classDef classA fill:#7e95af; 
 classDef classB fill:#fc6f03;
 classDef classC fill:#a13ddb;
 
-    T(Terrestrial):::classA  --&gt; geogrid--&gt; metgrid 
+    T(Terrestrial):::classA  
+    subgraph WPS
+    T --&gt; geogrid--&gt; metgrid 
     M(MET):::classA  --&gt; ungrib --&gt; ERA5-T:::classC --&gt; metgrid 
     namelist.wps:::classB -.-&gt; geogrid
     namelist.wps:::classB -.-&gt; metgrid
     namelist.wps:::classB -.-&gt; ungrib
     namelist.wps:::classB -.-&gt; calc_ecmwf_p
     calc_ecmwf_p --&gt; PRES-T:::classC --&gt; metgrid
-    metgrid --&gt; met_em_.dD:::classC --&gt; real 
+    metgrid --&gt; met_em_.dD:::classC 
+    end
+    met_em_.dD:::classC --&gt; real 
     real --&gt; wrfinput_dD:::classC --&gt; WRF
     real --&gt; wrfbdy_d01:::classC --&gt; WRF
     namelist.input:::classB -.-&gt; real
@@ -492,47 +534,57 @@ P(Executable)</code></pre>
 </ul>
 </div>
 <h3 id="setup-wps">Setup WPS</h3>
+<p>📖 <a href="https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.4/users_guide_chap3.html">WPS user guide</a></p>
 <ol>
 <li><code>cd case_name/WPS</code> </li>
-<li>Modify <code>namelist.wps</code> &rarr; configuration file for <strong>WPS</strong></li>
+<li>Edit the <code>namelist.wps</code> configuration file for <strong>WPS</strong></li>
 <li><code>module load GCC/10.3.0 OpenMPI/4.1.1 WPS</code></li>
 <li>
 <p><code>srun geogrid.exe</code></p>
 <blockquote>
-<p>&rarr; Interpolates terrestrial data to domain</p>
-<p>&rarr; Outputs one ncfile per domain</p>
+<p>Define the simulation domains, and to interpolate various terrestrial data sets to the model grids.
+&rarr; Outputs one NetCDF file per domain</p>
 </blockquote>
 </li>
 <li>
 <p><code>srun ungrib.exe</code></p>
 <blockquote>
-<p>&rarr; prepares a dictionary and creates intermediary files that WPS  can read (e.g., translate data from ERA, GFS or any other met model)</p>
-<p>Creates <code>ERA5-T</code> &rarr; one file per time step</p>
+<p>Creates intermediary files (e.g., translate data from ERA, GFS or any other met model)</p>
+<p>&rarr; Creates one <code>ERA5-T</code> file per time step</p>
 </blockquote>
 </li>
 <li>
 <p><code>srun calc_ecmwf_p.exe</code> </p>
 <blockquote>
-<p>&rarr; calculates pressure levels for ERA5</p>
-<p>Creates <code>PRES-T</code> &rarr; one file per time step</p>
+<p>Calculates pressure levels for specifically for ERA5</p>
+<p>&rarr; Creates one <code>PRES-T</code> file per time step</p>
 </blockquote>
+<div class="admonition info era5">
+<p class="admonition-title">Info</p>
+<p>Not all reanalysis datasets have all the variables required for <code>WRF</code> and this step is specific to ERA5.</p>
+</div>
 </li>
 <li>
 <p><code>srun metgrid.exe</code></p>
 <blockquote>
-<p>&rarr; creates input files for <code>WRF real.exe</code> </p>
-<p>Creates <code>met_em_.dD...</code> &rarr; one file per domain per time step</p>
+<p>Interpolates the intermediate-format meteorological data that onto the simulation domains defined by <code>geogrid</code></p>
+<p>&rarr; Creates one <code>met_em_.dD...</code> file per domain per time step</p>
 </blockquote>
 </li>
 <li>
 <p>Ouptut from <code>metgrid</code> is in <code>WPS/output/</code></p>
 </li>
 </ol>
+<div class="admonition info">
+<p class="admonition-title">Using run_wps.sh</p>
+<p>All steps can be automatised by running <code>sbatch run_wps.sh</code></p>
+</div>
 <h3 id="case-setup-wrf">Case setup / WRF</h3>
+<p>📖 <a href="https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.4/users_guide_chap5.html#realcase">User guide</a></p>
 <ol>
 <li><code>cd ../WRF</code></li>
 <li>
-<p>Input config file: <code>namelist.input</code> </p>
+<p>Edit the <code>namelist.input</code> configuration file</p>
 </li>
 <li>
 <p><code>srun real.exe</code>: Reads the <code>met_em...</code> files and creates input and boundary files, </p>
@@ -553,6 +605,13 @@ P(Executable)</code></pre>
 <ul>
 <li>Ouptut in <code>case_name/WRF/output</code></li>
 </ul>
+</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Using run_wrf.sh</p>
+<p>All steps can be automatised by running <code>sbatch run_wrf.sh</code>. Adapt the number of required CPU using <code>ntasks</code> and <code>-n</code> as needed.</p>
+<p>❗Too many processors can prevent the run to complete.</p>
+</div>
 <div class="admonition hint">
 <p class="admonition-title">How to check the status of a run?</p>
 <ul>
@@ -565,8 +624,6 @@ P(Executable)</code></pre>
 </li>
 </ul>
 </div>
-</li>
-</ol>
 
               
             </article>

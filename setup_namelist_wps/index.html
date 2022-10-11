@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://e5k.github.io/WRF_volcano/howto/">
+        <link rel="canonical" href="https://e5k.github.io/WRF_volcano/setup_namelist_wps/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.5">
     
     
       
-        <title>How to - WRF-Volcano</title>
+        <title>WPS - WRF-Volcano</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-to" class="md-skip">
+        <a href="#setup-namelistwps" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How to
+              WPS
             
           </span>
         </div>
@@ -277,11 +277,73 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../setup_namelist_wps/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          WPS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         WPS
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#share" class="md-nav__link">
+    &amp;share
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geogrid" class="md-nav__link">
+    &amp;geogrid
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ungrib" class="md-nav__link">
+    &amp;ungrib
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metgrid" class="md-nav__link">
+    &amp;metgrid
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -305,100 +367,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          How to
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../howto/" class="md-nav__link">
         How to
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setup-run-duration" class="md-nav__link">
-    Setup run duration
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setup-domains" class="md-nav__link">
-    Setup domains
-  </a>
-  
-    <nav class="md-nav" aria-label="Setup domains">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#general-rules" class="md-nav__link">
-    General rules
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#setting-up-the-outer-domain" class="md-nav__link">
-    Setting up the outer domain
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#setting-up-child-domains" class="md-nav__link">
-    Setting up child domains
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#choose-a-time-step" class="md-nav__link">
-    Choose a time step
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#monitor-runs" class="md-nav__link">
-    Monitor runs
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -437,56 +410,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup-run-duration" class="md-nav__link">
-    Setup run duration
+  <a href="#share" class="md-nav__link">
+    &amp;share
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup-domains" class="md-nav__link">
-    Setup domains
-  </a>
-  
-    <nav class="md-nav" aria-label="Setup domains">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#general-rules" class="md-nav__link">
-    General rules
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#setting-up-the-outer-domain" class="md-nav__link">
-    Setting up the outer domain
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#setting-up-child-domains" class="md-nav__link">
-    Setting up child domains
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#choose-a-time-step" class="md-nav__link">
-    Choose a time step
+  <a href="#geogrid" class="md-nav__link">
+    &amp;geogrid
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#monitor-runs" class="md-nav__link">
-    Monitor runs
+  <a href="#ungrib" class="md-nav__link">
+    &amp;ungrib
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metgrid" class="md-nav__link">
+    &amp;metgrid
   </a>
   
 </li>
@@ -505,65 +451,176 @@
                 
 
 
-<h1 id="how-to">How to</h1>
-<p>Random advices on some of the steps.</p>
-<h2 id="setup-run-duration">Setup run duration</h2>
-<ul>
-<li>The first 12h of any WRF run is <strong>spinup</strong>. This is the time required for the model to become quasi-steady state, so any run should at least be 12h.</li>
-</ul>
-<h2 id="setup-domains">Setup domains</h2>
-<h3 id="general-rules">General rules</h3>
+<h1 id="setup-namelistwps">Setup namelist.wps</h1>
+<p>📖 <a href="https://ral.ucar.edu/sites/default/files/public/Lesson-wps.html">Lesson</a>, <a href="https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_V3/user_guide_V3.9/users_guide_chap3.html#_How_to_Run">WPS user guide</a></p>
+<h2 id="share">&amp;share</h2>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>wrf_core</code></td>
+<td align="left">Should be <code>ARW</code></td>
+</tr>
+<tr>
+<td align="right"><code>max_dom</code></td>
+<td align="left">Number of domains</td>
+</tr>
+<tr>
+<td align="right"><code>start_date</code></td>
+<td align="left">'yyyy-mm-dd_hh<img alt="🇲🇲" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f1f2-1f1f2.svg" title=":mm:" />ss', one per domain, most likely they will start at the same time</td>
+</tr>
+<tr>
+<td align="right"><code>end_date</code></td>
+<td align="left">Same as <code>start_</code></td>
+</tr>
+<tr>
+<td align="right"><code>interval_seconds</code></td>
+<td align="left">Interval in seconds between input data (i.e., <code>3600</code> for hourly ERA5)</td>
+</tr>
+<tr>
+<td align="right"><code>io_form_geogrid</code></td>
+<td align="left"><code>2</code>, don't change</td>
+</tr>
+</tbody>
+</table>
+<h2 id="geogrid">&amp;geogrid</h2>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>parent_id</code><sup id="fnref6:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref4:2"><a class="footnote-ref" href="#fn:2">2</a></sup></td>
+<td align="left">Number of parent domains, first one should always be <code>1</code></td>
+</tr>
+<tr>
+<td align="right"><code>parent_grid_ratio</code><sup id="fnref5:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref3:2"><a class="footnote-ref" href="#fn:2">2</a></sup></td>
+<td align="left">Ratio between grid spacing between parent and child, should be an <strong>odd</strong> number</td>
+</tr>
+<tr>
+<td align="right"><code>i_parent_start</code><sup id="fnref4:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup></td>
+<td align="left"><code>x</code> grid point within the parent domain at which the <code>ll</code> corner of the child domain starts</td>
+</tr>
+<tr>
+<td align="right"><code>j_parent_start</code><sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></td>
+<td align="left"><code>y</code> grid point within the parent domain at which the <code>ll</code> corner of the child domain starts</td>
+</tr>
+<tr>
+<td align="right"><code>e_we</code>, <code>e_sn</code><sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+<td align="left">Number of grid points along w-e (<code>x</code>) and along s-n (<code>y</code>) axes <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. Must be divisible by  <code>parent_grid_ratio</code>+1</td>
+</tr>
+<tr>
+<td align="right"><code>geog_data_res</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+<td align="left">Use <code>default</code> &rarr; terrestrial dataset used</td>
+</tr>
+<tr>
+<td align="right"><code>dx</code>=<code>dy</code><sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup></td>
+<td align="left">Grid spacing of the outermost domain</td>
+</tr>
+<tr>
+<td align="right"><code>map_projection</code></td>
+<td align="left">Map projection</td>
+</tr>
+<tr>
+<td align="right"><code>ref_lat</code>, <code>ref_lon</code></td>
+<td align="left">Reference of the center of the outermost domain</td>
+</tr>
+<tr>
+<td align="right"><code>truelat1</code>, <code>truelat2</code></td>
+<td align="left">To check, projection-specific</td>
+</tr>
+<tr>
+<td align="right"><code>stand_lon</code></td>
+<td align="left">Should be the same as <code>ref_lon</code></td>
+</tr>
+<tr>
+<td align="right"><code>geog_data_path</code></td>
+<td align="left">Path to the source static terrestrial datasets</td>
+</tr>
+<tr>
+<td align="right"><code>opt_geogrid_tbl_path</code></td>
+<td align="left">Leave as it is for now</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ungrib">&amp;ungrib</h2>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>out_format</code></td>
+<td align="left"><code>WPS</code>, ❗<strong>Should not change</strong></td>
+</tr>
+<tr>
+<td align="right"><code>prefix</code></td>
+<td align="left">Prefix to names of temporary files (e.g., <code>ERA5</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="metgrid">&amp;metgrid</h2>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>fg_name</code></td>
+<td align="left">Prefixes of the names we want to read, <code>WPS</code> &rarr;❗<strong>should not change</strong></td>
+</tr>
+<tr>
+<td align="right"><code>prefix</code></td>
+<td align="left">Prefix to names of temporary files, e.g., <code>ERA5</code>, <code>PRES</code><sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup></td>
+</tr>
+<tr>
+<td align="right"><code>io_form_metgrid</code></td>
+<td align="left"><code>2</code></td>
+</tr>
+<tr>
+<td align="right"><code>opt_output_from_metgrid_path</code></td>
+<td align="left">Output path</td>
+</tr>
+<tr>
+<td align="right"><code>opt_metgrid_tbl_path</code></td>
+<td align="left">Output path to tables</td>
+</tr>
+</tbody>
+</table>
+<div class="footnote">
+<hr />
 <ol>
-<li>Setting up nested domains should be an iterative process. Make sure the parent domain is properly located before creating a child domain</li>
-<li>Domains should as much as possible having mountains on domains boundaries. The smaller the grid spacing, the more important mountains become (i.e., at the resolution of ERA5, topography is essentially flat)</li>
-<li>The outermost domain is the computationally cheapest one. The best practice is to set a large outer domain rather than push the child domains too close to the parent's boundaries</li>
-<li>The outermost domain controls the decomposition of the grid for run parallelisation. A small outer domain will prevent using a large number of CPU</li>
-</ol>
-<h3 id="setting-up-the-outer-domain">Setting up the outer domain</h3>
-<ol>
-<li>Setup an <strong>outer domain</strong>, which should:</li>
-<li>Be centered on the point of interest</li>
-<li>
-<p>Should have at least 100x100 points of the original data. </p>
+<li id="fn:1">
+<p>Coma-delimited values, there can be more but the program will only read the n<span class="arithmatex">\(^{th}\)</span> first values, where n=<code>max_dom</code>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref6:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li>
-<p>The <strong>grid spacing</strong> of the outer domain should be ≥ than 1/3rd of the grid spacing of the meteorological data. If <strong>nudging</strong> is used, the grid spacing of the outer domain must be the same than the original data.</p>
+<li id="fn:2">
+<p>First value should always be <code>1</code>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Means that u component is positive towards the E and v component positive towards the N&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>For a phenomenon to be captured/resolved, the grid spacing should be 6 times less than the typical length of the phenomenon&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p><code>ERA5</code> requires the <code>PRES</code> variable created by <code>calc_ecmwf_p</code>&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 </ol>
-<h3 id="setting-up-child-domains">Setting up child domains</h3>
-<ul>
-<li>Each child domain should be at most ~1/3rd of the parent domain in both <strong>size</strong> and <strong>grid spacing</strong> to avoid boundary effects</li>
-</ul>
-<h2 id="choose-a-time-step">Choose a time step</h2>
-<p>The time step (sec) should be <strong>at most 6x</strong> the grid spacing (km) of the specific domain. Conceptually, the time step should be sufficiently small to prevent the wind from blowing through more than one grid cell (&rarr; <strong>CFL</strong> criterion).  At first, try a run with the maximum resolution. If the model complains about a <strong>CFL breach</strong>, then reduce the time step.
-  1. Start with the maximum time step (e.g., 6 seconds for <code>dx</code>=1 km)
-  2. If it runs, 👍
-  3. If not, reduce it to half
-     1. If it runs, increase it by a half 
-     2. If not, reduce</p>
-<ol>
-<li>If it is necessary to reduce the time step by more than 1/4th of the original, <strong>then it is probably better to change the domain</strong></li>
-</ol>
-<div class="admonition info">
-<p class="admonition-title">Test duration</p>
-<p>Tests do not require run completion &rarr; testing on the first 2h is enough</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Iterate!</p>
-<p>Test <strong>one domain at the time</strong></p>
-</div>
-<h2 id="monitor-runs">Monitor runs</h2>
-<p>There are several ways to check the status of a run:</p>
-<ol>
-<li><code>tail rsl.error.0000</code>: Check computation time for each time step and estimate the remaining time </li>
-<li>Check files with <code>ncview</code>. Make sure that:<ul>
-<li>The job is not outputting only <code>nan</code> though the job did not crash</li>
-<li>There is no checkerboard pattern following grid points </li>
-<li><code>w</code> values are not ridiculously large (±60 ms-1) and that <code>w</code>&rarr;0 close to the model top</li>
-<li>There is no presence of waves indicating an unrealistic interaction with the boundary (e.g., vertical or horizontal waves)</li>
-</ul>
-</li>
-</ol>
 
               
             </article>
@@ -577,7 +634,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../setup_namelist_input/" class="md-footer__link md-footer__link--prev" aria-label="Previous: WRF" rel="prev">
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Model setup" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -586,11 +643,26 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              WRF
+              Model setup
             </div>
           </div>
         </a>
       
+      
+        
+        <a href="../setup_namelist_input/" class="md-footer__link md-footer__link--next" aria-label="Next: WRF" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              WRF
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
       
     </nav>
   

@@ -21,6 +21,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://e5k.github.io/WRF_volcano/setup_namelist_input/</loc>
+         <lastmod>2022-10-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://e5k.github.io/WRF_volcano/setup_namelist_wps/</loc>
+         <lastmod>2022-10-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://e5k.github.io/WRF_volcano/versions/</loc>
          <lastmod>2022-10-11</lastmod>
          <changefreq>daily</changefreq>

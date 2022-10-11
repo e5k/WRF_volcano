@@ -42,7 +42,7 @@ classDef classC fill:#a13ddb;
     namelist.input:::classB -.-> real
     namelist.input:::classB -.-> WRF --> wrfout_dD_T:::classC
 
-     
+    
 ``` 
 
 ```mermaid

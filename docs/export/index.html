@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Reveal JS presentation</title>
+
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Hakim El Hattab">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="libs/reveal.js/4.1.3/reset.css">
+	<link rel="stylesheet" href="libs/reveal.js/4.1.3/reveal.css">
+
+	
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	  <!-- highlight Theme -->
+  	
+	  <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/monokai.min.css">
+	
+	
+		
+	<link rel="stylesheet" href="libs/reveal.js/4.1.3/plugin/chalkboard/style.css">
+	
+	
+	
+		<link rel="stylesheet" href="libs/reveal.js/4.1.3/plugin/customcontrols/style.css">
+	
+	<link rel="stylesheet" href="libs/styles/tasklist.css">
+
+
+
+  <!-- Revealjs Theme -->
+  
+  	<link rel="stylesheet" href="libs/reveal.js/4.1.3/theme/black.css" id="theme">
+  
+  
+
+
+  <!-- Revealjs Theme -->
+  
+
+ 
+</head>
+
+<body>
+  
+
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      
+
+
+    
+        <section >
+            
+            <p>password: askja1875</p>
+<h2>Tephra hazard assessment exercise</h2>
+<h3>Question 1: Eruptive history</h3>
+<ol>
+<li>
+<blockquote>
+<p>On the cumulative GVP plot, what does the slope of the plot (i.e., the ratio of <code>y</code> to <code>x</code>) represent?</p>
+</blockquote>
+<ul>
+<li>It represents the eruption frequency</li>
+</ul>
+</li>
+<li>
+<blockquote>
+<p>How does it vary in time, and how do you explain it?</p>
+</blockquote>
+<ul>
+<li>It can be broken in two segments that indicate changes in eruption frequency. This, however, is an artefact. The <em>oldest</em> segment represents the geological record (where larger VEIs are usually preserved), whereas the <em>youngest</em> segment represents the historical record, which fully accounts for small eruptions but might be too short to account for large eruptions.</li>
+</ul>
+</li>
+<li>
+<blockquote>
+<p>What is the <strong>annual frequency of eruption</strong> for the recent history?</p>
+</blockquote>
+<ul>
+<li>There has been 8 eruptions since 1480 → $8 / (2022-1480) = 0.015$ eruption per year, or about 1 eruption every 67 years.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>Question 2: Wind conditions</h3>
+<ol>
+<li>
+<blockquote>
+<p>Visualize these wind patterns in the context of a hazard assessment. What is the main wind direction? How will that affect tephra dispersal?</p>
+</blockquote>
+<ul>
+<li>Below 1 km, most of the dispersal is towards SW, with a slightly more S component for the month of May</li>
+</ul>
+</li>
+<li>
+<blockquote>
+<p>How does the mean wind direction vary with height? How is that affecting eruptions of different sizes? (→ refer to the note about <em>VEI and plume heights</em> above).</p>
+</blockquote>
+<ul>
+<li>Between 1-10 km, there is a wider spread: winter months have a greater S component, other months have a stronger E component</li>
+</ul>
+</li>
+<li>
+<blockquote>
+<p>Do you notice any seasonality? If yes, identify during what months it happens.</p>
+</blockquote>
+<ul>
+<li>Summer months have the lowest wind velocities below the tropopause</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>Question 3: ESP</h3>
+<ol>
+<li>
+<blockquote>
+<p>Analyse the distributions of sampled ESP. For each ESP, discuss:</p>
+<ul>
+<li>From what distribution have each ESP been sampled from?</li>
+<li>What <em>prior knowledge</em> do these distribution reflect?</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>Height:</strong> logarithmic → small heights have more probability of occurrence</li>
+<li><strong>Mass:</strong> gaussian → most likely mass ~4, but symmetric error</li>
+<li>Other: uniform, equal probabilities of occurrence</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>Question 4: Probability calculation</h3>
+<ol>
+<li>
+<blockquote>
+<p>The <a href="Hazard_probabilistic2.md">previous module</a> has introduced how to compute <em>exceedence probability</em> for tephra accumulation. Based on the 10 simulations below for pixel $x,y$, what are the probabilities of this pixel to suffer tephra accumulations exceeding:</p>
+</blockquote>
+<ul>
+<li>50 $kg/m^2$ → $10/10 = 100%$</li>
+<li>100 $kg/m^2$ → $7/10 = 70%%$</li>
+<li>150 $kg/m^2$ → $2/10 = 20%%$</li>
+</ul>
+</li>
+<li>
+<blockquote>
+<p>Similarly, we also learned how to estimate a <strong>typical accumulation</strong> associated with a given probability of occurrence. The figure below shows the <a href="Hazard_probabilistic2.md#hazard-outputs">survivor function</a> for the data in the table above. Estimate the typical load associated with probability values of:</p>
+</blockquote>
+<ul>
+<li>25% → ~122 $kg/m^2$</li>
+<li>75% → ~85 $kg/m^2$</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>Question 5: Probability maps</h3>
+<ol>
+<li>
+<blockquote>
+<p>Describe the geometry (i.e., extent, orientation) of selected probability maps.</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>With your knowledge of hazardous thresholds of tephra accumulations previously discussed, what can you conclude with respect to the risk related to tephra fallouts?</p>
+</blockquote>
+</li>
+</ol>
+<p>❗ to do</p>
+<h2>Eruptive record exercise</h2>
+<h3>Question 1: Eruptive history</h3>
+<ol>
+<li>
+<blockquote>
+<p>How does the eruptive record changes in time, both in term of <strong>frequency</strong> and <strong>VEI</strong>?</p>
+</blockquote>
+<ul>
+<li>At least 3 segments</li>
+<li>Old dominated by VEI 5, medial by VEI 3/4, recent by VEI≤3</li>
+</ul>
+</li>
+</ol>
+<h3>Question 2: Record completenes</h3>
+<ol>
+<li>
+<blockquote>
+<p>What year marks the onset of record completeness for eruptions of VEI 3 and 4 at Cotopaxi volcano?</p>
+</blockquote>
+<ul>
+<li>1698 AD and 1350 AD, respectively</li>
+</ul>
+</li>
+<li>
+<blockquote>
+<p>What are the eruption frequencies (in number of eruptions per year) for both VEI?</p>
+</blockquote>
+<ul>
+<li>$3.5\times 10^{-2}$, $9.0\times 10^{-3}$</li>
+</ul>
+</li>
+</ol>
+<h3>Question 3: Eruption probability</h3>
+<p>What is the probability of:</p>
+<ol>
+<li>
+<blockquote>
+<p>A VEI 3 eruption to occur in the next <strong>10</strong> years? <strong>100</strong> years?</p>
+</blockquote>
+<ul>
+<li>0.286, 0.781</li>
+</ul>
+</li>
+<li>
+<blockquote>
+<p>A VEI 4 eruption to occur in the next <strong>10</strong> years? <strong>100</strong> years?</p>
+</blockquote>
+<ul>
+<li>0.074, 0.202</li>
+</ul>
+</li>
+</ol>
+
+            </section>
+    
+
+
+    </div>
+
+
+  </div>
+
+  	
+	<script src="libs/reveal.js/4.1.3/reveal.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/zoom/zoom.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/notes/notes.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/search/search.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/markdown/markdown.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/highlight/highlight.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/menu/menu.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/math/math.js"></script>
+
+	<script src="libs/reveal.js/4.1.3/plugin/fullscreen/plugin.js"></script>
+  
+  	<script src="libs/reveal.js/4.1.3/plugin/animate/plugin.js"></script>
+  	<script src="libs/reveal.js/4.1.3/plugin/animate/svg.min.js"></script>
+  
+  	<script src="libs/reveal.js/4.1.3/plugin/anything/plugin.js"></script>
+	  <script src="libs/reveal.js/4.1.3/plugin/anything/Chart.min.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/anything/d3/d3.v3.min.js"></script>				
+	<script src="libs/reveal.js/4.1.3/plugin/anything/d3.patch.js"></script>			
+	<script src="libs/reveal.js/4.1.3/plugin/anything/d3/queue.v1.min.js"></script>		
+	<script src="libs/reveal.js/4.1.3/plugin/anything/d3/topojson.v1.min.js"></script>		
+	<script src="libs/reveal.js/4.1.3/plugin/anything/function-plot.js"></script>
+
+ <!--	<script src="libs/reveal.js/4.1.3/plugin/audio-slideshow/plugin.js"></script>  -->
+<!--	<script src="libs/reveal.js/4.1.3/plugin/audio-slideshow/recorder.js"></script>-->
+<!--	<script src="libs/reveal.js/4.1.3/plugin/audio-slideshow/RecordRTC.js"></script>-->
+
+<script src="libs/reveal.js/4.1.3/plugin/chalkboard/plugin.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/customcontrols/plugin.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/embed-tweet/plugin.js"></script>
+
+	<script src="libs/reveal.js/4.1.3/plugin/chart/chart.min.js"></script>
+	<script src="libs/reveal.js/4.1.3/plugin/chart/plugin.js"></script>
+
+  <script>
+
+		const printPlugins = [
+			RevealNotes, 
+			RevealHighlight,
+			RevealMath,
+			RevealAnimate,
+			RevealChalkboard, 
+			RevealEmbedTweet,
+			RevealChart,
+		];
+
+		const plugins =  [...printPlugins,
+		RevealZoom, 
+		RevealSearch, 
+				RevealMarkdown, 
+				RevealMenu, 
+				RevealFullscreen,
+				RevealAnything,
+				//RevealAudioSlideshow,
+				//RevealAudioRecorder,
+				RevealCustomControls, 
+				// poll
+				// question
+				// seminar
+				 ]
+
+
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: true,
+			controlsTutorial: true,
+			controlsLayout: 'bottom-right',
+			controlsBackArrows: 'faded',
+			progress: true,
+			slideNumber: false,
+			//#showSlideNumber "all" "print" "speaker"
+			hash: true,//#  hash: false,
+			//# respondToHashChanges: true,
+			//# history: false,
+			keyboard: true,
+			//#keyboardCondition: null,
+			overview: true,
+			center: true,
+			touch: true,
+			loop: false,
+			rtl: false,
+			//#navigationMode: 'default', linear grid
+			shuffle: false,
+			fragments: true,
+			fragmentInURL: false,
+			embedded: false,
+			help: true,
+			//#pause: true
+			showNotes: false,
+			autoPlayMedia: false, // TODO fix this to a nullable value
+			//#preloadIframes: null. true false
+			//#autoAnimate: true
+			//#autoAnimateMatcher: null,
+			//#autoAnimateEasing: 'ease',
+			//autoAnimateDuration: 1.0,
+			//#autoAnimateUnmatched: true
+			//#autoAnimateStyles: []
+			autoSlide: 0, // TODO fix this to a falseable value
+			autoSlideStoppable: true,
+			autoSlideMethod: '0',
+			defaultTiming: 120,
+			mouseWheel: false,
+			//#previewLinks: false
+			//#postMessage: true,  // TODO : this can cause issues with the vscode api ???
+			//#postMessageEvents: false,
+			//#focusBodyOnPageVisibilityChange: true,
+			transition: 'slide',
+			transitionSpeed: 'default',
+			backgroundTransition: 'fade',
+			//#pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+			//#pdfSeparateFragments: true,
+			//#pdfPageHeightOffset: -1,
+			viewDistance: 3,
+			//#mobileViewDistance: 2,
+			display: 'block',
+			//#hideInactiveCursor: true,
+			//#hideCursorTime: 5000
+
+			// Parallax Background
+			parallaxBackgroundImage: '',
+			parallaxBackgroundSize: '',
+			parallaxBackgroundHorizontal: 0,
+			parallaxBackgroundVertical: 0,
+			
+			//Presentation Size
+			width: 960,
+			height: 700,
+			margin: 0.04,
+			minScale: 0.2,
+			maxScale: 2,
+			disableLayout: false,
+
+			audio: {
+				prefix: 'audio/', 	// audio files are stored in the "audio" folder
+				suffix: '.ogg',		// audio files have the ".ogg" ending
+				textToSpeechURL: null,  // the URL to the text to speech converter
+				defaultNotes: false, 	// use slide notes as default for the text to speech converter
+				defaultText: false, 	// use slide text as default for the text to speech converter
+				advance: 0, 		// advance to next slide after given time in milliseconds after audio has played, use negative value to not advance
+				autoplay: false,	// automatically start slideshow
+				defaultDuration: 5,	// default duration in seconds if no audio is available
+				defaultAudios: true,	// try to play audios with names such as audio/1.2.ogg
+				playerOpacity: 0.05,	// opacity value of audio player if unfocused
+				playerStyle: 'position: fixed; bottom: 4px; left: 25%; width: 50%; height:75px; z-index: 33;', // style used for container of audio controls
+				startAtFragment: false, // when moving to a slide, start at the current fragment or at the start of the slide
+			},
+			
+			chalkboard: { // font-awesome.min.css must be available
+					//src: "chalkboard/chalkboard.json",
+					storage: "chalkboard-demo",
+				},
+			
+			customcontrols: {
+					controls: [
+      						{
+						  id: 'toggle-overview',
+						  title: 'Toggle overview (O)',
+						  icon: '<i class="fa fa-th"></i>',
+						  action: 'Reveal.toggleOverview();'
+						}
+						,
+						{ icon: '<i class="fa fa-pen-square"></i>',
+						  title: 'Toggle chalkboard (B)',
+						  action: 'RevealChalkboard.toggleChalkboard();'
+						},
+						{ icon: '<i class="fa fa-pen"></i>',
+						  title: 'Toggle notes canvas (C)',
+						  action: 'RevealChalkboard.toggleNotesCanvas();'
+						}
+				]
+			},
+			chart: {
+					defaults: { 
+						color: 'lightgray', // color of labels
+						scale: { 
+							beginAtZero: true, 
+							ticks: { stepSize: 1 },
+							grid: { color: "lightgray" } , // color of grid lines
+						},
+					},
+					line: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ], "borderDash": [ [5,10], [0,0] ] }, 
+					bar: { backgroundColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+					pie: { backgroundColor: [ ["rgba(0,0,0,.8)" , "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"] ]},
+					radar: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+			},
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: { Macros: { RR: "{\\bf R}" } }
+				},
+				anything: [ 
+				{
+		className: "plot",
+		defaults: {width:500, height: 500, grid:true},
+		initialize: (function(container, options){ options.target = "#"+container.id; functionPlot(options) })
+	 },
+	 {
+		className: "chart",  
+		initialize: (function(container, options){ container.chart = new Chart(container.getContext("2d"), options);  })
+	 },
+	 {
+		className: "anything",
+		initialize: (function(container, options){ if (options && options.initialize) { options.initialize(container)} })
+	 },
+					],
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: (window.location.search.match(/print-pdf/gi) ? printPlugins : plugins ) 
+		});
+			
+
+
+	    // Change chalkboard theme : 
+		function changeTheme(input) {
+			var config = {};
+			config.theme = input.value;
+			Reveal.getPlugin("RevealChalkboard").configure(config);
+			input.blur();
+		}
+
+		// // Handle the message inside the webview
+        // window.addEventListener('message', event => {
+
+        //     const message = event.data; // The JSON data our extension sent
+
+        //     switch (message.command) {
+        //         case 'refactor':
+        //             Reveal.toggleHelp();
+        //     }
+        // });
+
+		if (window.location.search.match(/print-pdf-now/gi)) {
+      		setTimeout(() => {
+				window.print();
+			  }, 2500);
+			
+    }
+		
+
+	</script>
+
+</body>
+
+</html>

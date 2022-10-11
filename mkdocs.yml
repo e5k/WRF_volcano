@@ -1,0 +1,116 @@
+site_name: CERG-C Volcanic Risk Module
+site_url: https://CERG-C.github.io/cerg-c
+
+theme:
+  name: material
+  features:
+      - navigation.tabs
+      # - navigation.sections
+      # - navigation.expand
+
+  logo: img/volcano.svg
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - scheme: default
+      accent: pink
+      primary: lime
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate
+      accent: pink
+      primary: lime
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+
+nav:
+  - Home: index.md
+  - Teaching:
+    - Tephra deposits: Pyroclast_story_intro.md
+    - QGIS basics: QGIS_Intro.md
+    - Setting up QGIS: QGIS_Setup.md
+    - Lava hazard: 
+      - Introduction: Hazard_lava_intro.md
+      - Getting started: Hazard_lava_config.md
+      - Path of steepest descent: Hazard_lava_steepest-descent.md
+      - Modelling lava flows: Hazard_lava_modeling.md
+      - Probabilistic modeling part I: Hazard_probabilistic1.md 
+      - Q-LavHA: Hazard_lava_Q-LavHA.md
+      - Instructor's notes: Hazard_lava_notes.md
+    - Tephra hazard:
+      - Introduction: Hazard_tephra_intro.md
+      - Modeling tephra transport: Hazard_tephra_modeling.md
+      - Probabilistic modeling part II: Hazard_probabilistic2.md 
+      - Hazard modelling: Hazard_tephra_exercise.md 
+      - The temporal component: Hazard_tephra_temporal.md
+      # - Beyond scenarios: Hazard_tephra_beyond.md
+      - Instructor's notes: Hazard_tephra_notes.md
+  - Resources: resources.md
+  - Contribute:
+    - Contribute: contribute.md
+    - Versions: versions.md
+    - Changelog: changelog.md
+  # - Demo: MASTER_example.py
+  # - Tips: tips.md
+  # - volcGIS API:
+  #   - Module eruption: volcGIS_eruption.md
+  #   - Module exposureAnalysis: volcGIS_exposureAnalysis.md
+
+plugins:
+    - search
+    - mkdocstrings
+    - mkdocs-jupyter:
+        execute: True
+        include_source: True
+    - encryptcontent: {}
+    # - with-pdf
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true 
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - footnotes
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - toc:
+      toc_depth: 4
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - abbr
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.keys
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+
+# extra:
+#   social:
+#     - icon: fontawesome/brands/twitter
+#       link: https://twitter.com/VolcanoRisk
+#     - icon: fontawesome/brands/github
+#       link: https://github.com/vharg
+extra:
+  version:
+    provider: mike
+
+extra_css:
+  - stylesheets/extra.css
+
+copyright: Copyright &copy; 2022 Sébastien Biasse / CERG-C / University of Geneva / CC BY-NC-SA

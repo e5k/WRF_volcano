@@ -28,7 +28,7 @@ flowchart TD
 classDef classA fill:#7e95af; 
 classDef classB fill:#fc6f03;
 classDef classC fill:#a13ddb;
-
+ 
     T(Terrestrial):::classA  --> geogrid--> metgrid 
     M(MET):::classA  --> ungrib --> ERA5-T:::classC --> metgrid 
     namelist.wps:::classB -.-> geogrid

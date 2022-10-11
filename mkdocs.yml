@@ -106,9 +106,9 @@ extra_javascript:
 #       link: https://twitter.com/VolcanoRisk
 #     - icon: fontawesome/brands/github
 #       link: https://github.com/vharg
-extra:
-  version:
-    provider: mike
+# extra:
+#   version:
+#     provider: mike
 
 extra_css:
   - stylesheets/extra.css

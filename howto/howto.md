@@ -27,4 +27,16 @@ Random advices on some of the steps.
 
 - Each child domain should be at most ~1/3rd of the parent domain in both **size** and **grid spacing** to avoid boundary effects
 
+## Choose a time step  
 
+1. The time step (sec) should be **at most 6x** the grid spacing (km) of the specific domain. Conceptually, the time step should be sufficiently small to prevent the wind from blowing through more than one grid cell (&rarr; **CFL** criterion).  At first, try a run with the maximum resolution. If the model complains about a **CFL breach**, then reduce the time step.
+    1. Start with the maximum time step (e.g., 6 seconds for `dx`=1 km)
+    2. If it runs, 👍
+    3. If not, reduce it to half
+       1. If it runs, increase it by a half 
+       2. If not, reduce
+
+    4. If it is necessary to reduce the time step by more than 1/4th of the original, **then it is probably better to change the domain**
+
+❗Tests do not require run completion &rarr; testing on the first 2h is enough
+❗Test **one domain at the time**

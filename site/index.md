@@ -12,7 +12,7 @@ This page is written by Alex Poulidis (Bremen University) and Sébastien Biass (
 
 - Using MARS (&rarr; UNIGE users)
 
-### Setup a run 
+## Setup a run 
 
 1. On the cluster, create a `WRF/` folder somewhere on the `scratch` partition
 2. Copy/clone script from `/srv/beegfs/scratch/shares/wrf_volcano/`
@@ -42,7 +42,7 @@ classDef classC fill:#a13ddb;
     namelist.input:::classB -.-> real
     namelist.input:::classB -.-> WRF --> wrfout_dD_T:::classC
 
-    
+     
 ``` 
 
 ```mermaid
@@ -114,9 +114,8 @@ P(Executable)
     !!! hint "How to check the status of a run?"
 
         - `tail rsl.error.0000` &rarr; check computation time for each time step and estimate the remaining time 
-        - Check files with `ncview` &rarr; check vertical velocity
-        - Bad runs:
-            1. Crashed, still running but outputting only Nan
+        - Check files with `ncview` &rarr; check vertical velocity, where bad runs typically:
+            1. Outputting only `nan` though the job did not crash
             2. Checkerboard pattern following grid points 
-            3. Large values (±60 ms-1)
+            3. Large `w` values (±60 ms-1)
     

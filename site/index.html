@@ -78,12 +78,6 @@
       
     </div>
     
-      <div data-md-component="outdated" hidden>
-        <aside class="md-banner md-banner--warning">
-          
-        </aside>
-      </div>
-    
     
       
 
@@ -294,12 +288,18 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#setup-a-run" class="md-nav__link">
     Setup a run
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Setup a run">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#overview-of-the-wrf-workflow" class="md-nav__link">
@@ -383,12 +383,18 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#setup-a-run" class="md-nav__link">
     Setup a run
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Setup a run">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#overview-of-the-wrf-workflow" class="md-nav__link">
@@ -441,7 +447,7 @@
 <ul>
 <li>Using MARS (&rarr; UNIGE users)</li>
 </ul>
-<h3 id="setup-a-run">Setup a run</h3>
+<h2 id="setup-a-run">Setup a run</h2>
 <ol>
 <li>On the cluster, create a <code>WRF/</code> folder somewhere on the <code>scratch</code> partition</li>
 <li>Copy/clone script from <code>/srv/beegfs/scratch/shares/wrf_volcano/</code></li>
@@ -551,11 +557,10 @@ P(Executable)</code></pre>
 <p class="admonition-title">How to check the status of a run?</p>
 <ul>
 <li><code>tail rsl.error.0000</code> &rarr; check computation time for each time step and estimate the remaining time </li>
-<li>Check files with <code>ncview</code> &rarr; check vertical velocity</li>
-<li>Bad runs:<ol>
-<li>Crashed, still running but outputting only Nan</li>
+<li>Check files with <code>ncview</code> &rarr; check vertical velocity, where bad runs typically:<ol>
+<li>Outputting only <code>nan</code> though the job did not crash</li>
 <li>Checkerboard pattern following grid points </li>
-<li>Large values (±60 ms-1)</li>
+<li>Large <code>w</code> values (±60 ms-1)</li>
 </ol>
 </li>
 </ul>
@@ -596,7 +601,7 @@ P(Executable)</code></pre>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs"], "search": "assets/javascripts/workers/search.bd0b6b67.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs"], "search": "assets/javascripts/workers/search.bd0b6b67.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="assets/javascripts/bundle.467223ff.min.js"></script>

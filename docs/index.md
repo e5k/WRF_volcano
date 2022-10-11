@@ -8,20 +8,34 @@ This page is written by Alex Poulidis (Bremen University) and Sébastien Biass (
 
 - [Yggdrasil](https://doc.eresearch.unige.ch/hpc/start) (Université de Genève)
 
+### WRF documentation
+
+- 📖 [WRF user guide](https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.4/contents.html)
+
 ### Download ERA5 data 
 
 - Using MARS (&rarr; UNIGE users)
 
+- ERA5 data should be placed in `/srv/beegfs/scratch/shares/wrf_volcano/MET/ERA5/case_name`
+
 ## Setup a run 
 
-1. On the cluster, create a `WRF/` folder somewhere on the `scratch` partition
-2. Copy/clone script from `/srv/beegfs/scratch/shares/wrf_volcano/`
-3. Run `./setup_wrf.sh case_name`, where `case_name` is your project/case name
+1. On the cluster Copy/clone script from `/srv/beegfs/scratch/shares/wrf_volcano/`.
+2. Run `./setup_wrf.sh case_name`, where `case_name` is your project/case name. This will:
 
-This step creates a `case_name/` directory populated with `WPS/` and `WRF/` folders.
+    1. Create a folder named `WRF_projects/case_name/` both on `HOME` and on `scratch`. 
+    2. The folder on the `HOME` partition contains the config files (i.e., `namelist.*`) and are backed up.
+    3. The folder on the `scratch` partition contains the `WPS/` and `WRF/` folders, which will store most of the data.
 
 ### Overview of the WRF workflow
 
+The process of running WRF consists of two steps:
+
+1. Pre-processing using the WRF Preprocessing System (`WPS`):
+   
+   > WPS is a set of three programs whose collective role is to prepare input for real-data simulations
+
+2. Running `WRF`.
 
 ```mermaid
 flowchart TD
@@ -29,14 +43,18 @@ classDef classA fill:#7e95af;
 classDef classB fill:#fc6f03;
 classDef classC fill:#a13ddb;
  
-    T(Terrestrial):::classA  --> geogrid--> metgrid 
+    T(Terrestrial):::classA  
+    subgraph WPS
+    T --> geogrid--> metgrid 
     M(MET):::classA  --> ungrib --> ERA5-T:::classC --> metgrid 
     namelist.wps:::classB -.-> geogrid
     namelist.wps:::classB -.-> metgrid
     namelist.wps:::classB -.-> ungrib
     namelist.wps:::classB -.-> calc_ecmwf_p
     calc_ecmwf_p --> PRES-T:::classC --> metgrid
-    metgrid --> met_em_.dD:::classC --> real 
+    metgrid --> met_em_.dD:::classC 
+    end
+    met_em_.dD:::classC --> real 
     real --> wrfinput_dD:::classC --> WRF
     real --> wrfbdy_d01:::classC --> WRF
     namelist.input:::classB -.-> real
@@ -66,39 +84,50 @@ P(Executable)
 
 ### Setup WPS 
 
+📖 [WPS user guide](https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.4/users_guide_chap3.html)
+
 1. `cd case_name/WPS` 
-2. Modify `namelist.wps` &rarr; configuration file for **WPS**
+2. Edit the `namelist.wps` configuration file for **WPS**
 3. `module load GCC/10.3.0 OpenMPI/4.1.1 WPS`
 4. `srun geogrid.exe`
 
-    > &rarr; Interpolates terrestrial data to domain
-    > 
-    > &rarr; Outputs one ncfile per domain
+    > Define the simulation domains, and to interpolate various terrestrial data sets to the model grids.
+    > &rarr; Outputs one NetCDF file per domain
 
 5. `srun ungrib.exe`
 
-    > &rarr; prepares a dictionary and creates intermediary files that WPS  can read (e.g., translate data from ERA, GFS or any other met model)
+    > Creates intermediary files (e.g., translate data from ERA, GFS or any other met model)
     >
-    > Creates `ERA5-T` &rarr; one file per time step
+    > &rarr; Creates one `ERA5-T` file per time step
 
 6. `srun calc_ecmwf_p.exe` 
     
-    > &rarr; calculates pressure levels for ERA5
+    > Calculates pressure levels for specifically for ERA5
     >
-    > Creates `PRES-T` &rarr; one file per time step
+    > &rarr; Creates one `PRES-T` file per time step
+
+    !!! info ERA5
+        Not all reanalysis datasets have all the variables required for `WRF` and this step is specific to ERA5.
+
 
 7. `srun metgrid.exe`
     
-    > &rarr; creates input files for `WRF real.exe` 
+    > Interpolates the intermediate-format meteorological data that onto the simulation domains defined by `geogrid`
     > 
-    > Creates `met_em_.dD...` &rarr; one file per domain per time step
+    > &rarr; Creates one `met_em_.dD...` file per domain per time step
 
 8. Ouptut from `metgrid` is in `WPS/output/`
 
+!!! info "Using run_wps.sh"
+
+    All steps can be automatised by running `sbatch run_wps.sh`
+
 ### Case setup / WRF 
 
+📖 [User guide](https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.4/users_guide_chap5.html#realcase)
+
 1. `cd ../WRF`
-2. Input config file: `namelist.input` 
+2. Edit the `namelist.input` configuration file
 
 3. `srun real.exe`: Reads the `met_em...` files and creates input and boundary files, 
     - input files being the atmospheric state at $t=0$ &rarr; `wrfinput_dD`
@@ -111,11 +140,17 @@ P(Executable)
 4. Job submission `sbatch wrf`
     - Ouptut in `case_name/WRF/output`
 
-    !!! hint "How to check the status of a run?"
+!!! info "Using run_wrf.sh"
 
-        - `tail rsl.error.0000` &rarr; check computation time for each time step and estimate the remaining time 
-        - Check files with `ncview` &rarr; check vertical velocity, where bad runs typically:
-            1. Outputting only `nan` though the job did not crash
-            2. Checkerboard pattern following grid points 
-            3. Large `w` values (±60 ms-1)
-    
+    All steps can be automatised by running `sbatch run_wrf.sh`. Adapt the number of required CPU using `ntasks` and `-n` as needed.
+
+    ❗Too many processors can prevent the run to complete.
+
+!!! hint "How to check the status of a run?"
+
+    - `tail rsl.error.0000` &rarr; check computation time for each time step and estimate the remaining time 
+    - Check files with `ncview` &rarr; check vertical velocity, where bad runs typically:
+        1. Outputting only `nan` though the job did not crash
+        2. Checkerboard pattern following grid points 
+        3. Large `w` values (±60 ms-1)
+

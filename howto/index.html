@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://e5k.github.io/WRF_volcano/changelog/">
+        <link rel="canonical" href="https://e5k.github.io/WRF_volcano/howto/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.5">
     
     
       
-        <title>Changelog - WRF-Volcano</title>
+        <title>How to - WRF-Volcano</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#changelog" class="md-skip">
+        <a href="#how-tos" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Changelog
+              How to
             
           </span>
         </div>
@@ -195,10 +195,12 @@
         
   
   
+    
+  
 
 
   <li class="md-tabs__item">
-    <a href="../howto/" class="md-tabs__link">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
       How to
     </a>
   </li>
@@ -256,11 +258,86 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../howto/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          How to
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         How to
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup-run-duration" class="md-nav__link">
+    Setup run duration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-domains" class="md-nav__link">
+    Setup domains
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup domains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-rules" class="md-nav__link">
+    General rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-outer-domain" class="md-nav__link">
+    Setting up the outer domain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-child-domains" class="md-nav__link">
+    Setting up child domains
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -292,9 +369,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#2022-07-24" class="md-nav__link">
-    2022-07-24
+  <a href="#setup-run-duration" class="md-nav__link">
+    Setup run duration
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-domains" class="md-nav__link">
+    Setup domains
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup domains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-rules" class="md-nav__link">
+    General rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-outer-domain" class="md-nav__link">
+    Setting up the outer domain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-child-domains" class="md-nav__link">
+    Setting up child domains
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -312,11 +423,34 @@
                 
 
 
-<h1 id="changelog">Changelog</h1>
-<h2 id="2022-07-24">2022-07-24</h2>
+<h1 id="how-tos">How-to's</h1>
+<p>Random advices on some of the steps.</p>
+<h2 id="setup-run-duration">Setup run duration</h2>
 <ul>
-<li>The website was moved from an <strong>organisation</strong> (CERG-C.github.io) to a <strong>project</strong> (CERG-C) Github page.</li>
-<li>Now CERG-C.github.io contains only an <code>index.html</code> page with an automatic redirection.</li>
+<li>The first 12h of any WRF run is <strong>spinup</strong>. This is the time required for the model to become quasi-steady state, so any run should at least be 12h.</li>
+</ul>
+<h2 id="setup-domains">Setup domains</h2>
+<h3 id="general-rules">General rules</h3>
+<ol>
+<li>Setting up nested domains should be an iterative process. Make sure the parent domain is properly located before creating a child domain</li>
+<li>Domains should as much as possible having mountains on domains boundaries. The smaller the grid spacing, the more important mountains become (i.e., at the resolution of ERA5, topography is essentially flat)</li>
+<li>The outermost domain is the computationally cheapest one. The best practice is to set a large outer domain rather than push the child domains too close to the parent's boundaries</li>
+<li>The outermost domain controls the decomposition of the grid for run parallelisation. A small outer domain will prevent using a large number of CPU</li>
+</ol>
+<h3 id="setting-up-the-outer-domain">Setting up the outer domain</h3>
+<ol>
+<li>Setup an <strong>outer domain</strong>, which should:</li>
+<li>Be centered on the point of interest</li>
+<li>
+<p>Should have at least 100x100 points of the original data. </p>
+</li>
+<li>
+<p>The <strong>grid spacing</strong> of the outer domain should be ≥ than 1/3rd of the grid spacing of the meteorological data. If <strong>nudging</strong> is used, the grid spacing of the outer domain must be the same than the original data.</p>
+</li>
+</ol>
+<h3 id="setting-up-child-domains">Setting up child domains</h3>
+<ul>
+<li>Each child domain should be at most ~1/3rd of the parent domain in both <strong>size</strong> and <strong>grid spacing</strong> to avoid boundary effects</li>
 </ul>
 
               
@@ -327,6 +461,26 @@
       </main>
       
         <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

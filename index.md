@@ -18,6 +18,11 @@ This page is written by Alex Poulidis (Bremen Universität) and Sébastien Biass
 
 - ERA5 data should be placed in `/srv/beegfs/scratch/shares/wrf_volcano/MET/ERA5/case_name`
 
+
+## Case study
+
+The case-study is the Feb 2020 eruption of [Taal volcano](https://volcano.si.edu/volcano.cfm?vn=273070) in the Philippines. Hourly ERA5 data has already been downloaded for the period `2020-02-10_00:00:00`&rarr;`2020-02-20_23:59:59` and is located in `/srv/beegfs/scratch/shares/wrf_volcano/MET/ERA5/Taal/`.
+
 ## Setup a run 
 
 1. On the cluster, clone the `WRF-volcano` repository:

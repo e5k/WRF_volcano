@@ -136,12 +136,14 @@ This section describes the steps required to setup the pre-processing part of `W
 
 3. `srun real.exe`
    
-   > Reads the `met_em...` files and creates input and boundary files 
-   >
-   > - input files represent the atmospheric state at $t=0$ &rarr; `wrfinput_dD`
-   > - boundary files are tendencies (i.e., fluxes) at the border to represent future states &rarr; `wrfbdy_d01` &rarr; only outer domain
+    > Reads the `met_em...` files and creates input and boundary files 
+    >
+    > - input files represent the atmospheric state at $t=0$ &rarr; `wrfinput_dD`
+    > - boundary files are tendencies (i.e., fluxes) at the border to represent future states &rarr; `wrfbdy_d01` &rarr; only outer domain
 
-
+    !!! info
+        - at $t=0$, everything is based on input data 
+        - at $t>0$, input data only affect boundaries
 
 4. Job submission with `sbatch wrf`
     > Output in `case_name/WRF/output`

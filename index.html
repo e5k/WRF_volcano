@@ -695,8 +695,6 @@ P(Executable)</code></pre>
 </li>
 <li>
 <p><code>srun real.exe</code></p>
-</li>
-</ol>
 <blockquote>
 <p>Reads the <code>met_em...</code> files and creates input and boundary files </p>
 <ul>
@@ -704,9 +702,18 @@ P(Executable)</code></pre>
 <li>boundary files are tendencies (i.e., fluxes) at the border to represent future states &rarr; <code>wrfbdy_d01</code> &rarr; only outer domain</li>
 </ul>
 </blockquote>
-<ol>
-<li>Job submission with <code>sbatch wrf</code>
-    &gt; Output in <code>case_name/WRF/output</code></li>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<ul>
+<li>at <span class="arithmatex">\(t=0\)</span>, everything is based on input data </li>
+<li>at <span class="arithmatex">\(t&gt;0\)</span>, input data only affect boundaries</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Job submission with <code>sbatch wrf</code>
+    &gt; Output in <code>case_name/WRF/output</code></p>
+</li>
 </ol>
 <div class="admonition info">
 <p class="admonition-title">Using run_wrf.sh</p>

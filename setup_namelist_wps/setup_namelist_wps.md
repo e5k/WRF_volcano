@@ -9,7 +9,7 @@
 |-------------------:|:------------------------------------------------------------------------------------|
 |         `wrf_core` | Should be `ARW`                                                                     |
 |          `max_dom` | Number of domains                                                                   |
-|       `start_date` | 'yyyy-mm-dd_hh:mm:ss', one per domain, most likely they will start at the same time |
+|       `start_date` | `yyyy-mm-dd_hh:mm:ss`, one per domain, most likely they will start at the same time |
 |         `end_date` | Same as `start_`                                                                    |
 | `interval_seconds` | Interval in seconds between input data (i.e., `3600` for hourly ERA5)               |
 |  `io_form_geogrid` | `2`, don't change                                                                   |

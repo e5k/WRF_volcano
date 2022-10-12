@@ -29,7 +29,7 @@ classDef classC fill:#a13ddb;
  
     T(Terrestrial):::classA  
     subgraph WPS
-    T --> geogrid--> metgrid 
+    T --> geogrid --> geo_em:::classC --> metgrid 
     M(MET):::classA  --> ungrib --> ERA5-T:::classC --> metgrid 
     namelist.wps:::classB -.-> geogrid
     namelist.wps:::classB -.-> metgrid

@@ -496,8 +496,10 @@
 <p>The case-study is the Feb 2020 eruption of <a href="https://volcano.si.edu/volcano.cfm?vn=273070">Taal volcano</a> in the Philippines. Hourly ERA5 data has already been downloaded for the period <code>2020-02-10_00:00:00</code>&rarr;<code>2020-02-20_23:59:59</code> and is located in <code>/srv/beegfs/scratch/shares/wrf_volcano/MET/ERA5/Taal/</code>.</p>
 <h2 id="setup-a-run">Setup a run</h2>
 <ol>
-<li>On the cluster, clone the <code>WRF-volcano</code> repository:
-   <code>git clone https://github.com/e5k/WRF_volcano</code></li>
+<li>On the cluster, clone the <code>WRF-volcano</code> repository:</li>
+</ol>
+<p><code>git clone https://github.com/e5k/WRF_volcano</code></p>
+<ol>
 <li>Run <code>./setup_wrf.sh case_name</code>, where <code>case_name</code> is your project/case name (here, <code>Taal</code>). This will create a folder named <code>WRF_projects/case_name/</code> both on <code>HOME</code> and on <code>scratch</code>. <ul>
 <li>The folder on the <code>HOME</code> partition contains the config files (i.e., <code>namelist.*</code>) and are backed up.</li>
 <li>The folder on the <code>scratch</code> partition contains the <code>WPS/</code> and <code>WRF/</code> folders, which will store most of the data.</li>

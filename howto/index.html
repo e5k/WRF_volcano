@@ -549,14 +549,20 @@
 <li>Each child domain should be at most ~1/3rd of the parent domain in both <strong>size</strong> and <strong>grid spacing</strong> to avoid boundary effects</li>
 </ul>
 <h2 id="choose-a-time-step">Choose a time step</h2>
-<p>The time step (sec) should be <strong>at most 6x</strong> the grid spacing (km) of the specific domain. Conceptually, the time step should be sufficiently small to prevent the wind from blowing through more than one grid cell (&rarr; <strong>CFL</strong> criterion).  At first, try a run with the maximum resolution. If the model complains about a <strong>CFL breach</strong>, then reduce the time step.
-  1. Start with the maximum time step (e.g., 6 seconds for <code>dx</code>=1 km)
-  2. If it runs, 👍
-  3. If not, reduce it to half
-     1. If it runs, increase it by a half 
-     2. If not, reduce</p>
+<p>The time step (sec) should be <strong>at most 6x</strong> the grid spacing (km) of the specific domain. Conceptually, the time step should be sufficiently small to prevent the wind from blowing through more than one grid cell (&rarr; <strong>CFL</strong> criterion).  At first, try a run with the maximum resolution. If the model complains about a <strong>CFL breach</strong>, then reduce the time step.</p>
 <ol>
-<li>If it is necessary to reduce the time step by more than 1/4th of the original, <strong>then it is probably better to change the domain</strong></li>
+<li>Start with the maximum time step (e.g., 6 seconds for <code>dx</code>=1 km)</li>
+<li>If it runs, 👍</li>
+<li>
+<p>If not, reduce it to half</p>
+<ol>
+<li>If it runs, increase it by a half </li>
+<li>If not, reduce</li>
+</ol>
+</li>
+<li>
+<p>If it is necessary to reduce the time step by more than 1/4th of the original, <strong>then it is probably better to change the domain</strong></p>
+</li>
 </ol>
 <div class="admonition info">
 <p class="admonition-title">Test duration</p>

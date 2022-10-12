@@ -30,6 +30,7 @@ Random advices on some of the steps.
 ## Choose a time step  
 
 The time step (sec) should be **at most 6x** the grid spacing (km) of the specific domain. Conceptually, the time step should be sufficiently small to prevent the wind from blowing through more than one grid cell (&rarr; **CFL** criterion).  At first, try a run with the maximum resolution. If the model complains about a **CFL breach**, then reduce the time step.
+
   1. Start with the maximum time step (e.g., 6 seconds for `dx`=1 km)
   2. If it runs, 👍
   3. If not, reduce it to half

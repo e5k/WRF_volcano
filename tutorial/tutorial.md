@@ -7,9 +7,11 @@ The case-study is the Feb 2020 eruption of [Taal volcano](https://volcano.si.edu
 ## Setup a run 
 
 1. On the cluster, clone the `WRF-volcano` repository:
+   
    ```
    git clone https://github.com/e5k/WRF_volcano
    ```
+   
 2. Run `./setup_wrf.sh case_name`, where `case_name` is your project/case name (here, `Taal`). This will create a folder named `WRF_projects/case_name/` both on `HOME` and on `scratch`. 
     - The folder on the `HOME` partition contains the config files (i.e., `namelist.*`) and are backed up.
     - The folder on the `scratch` partition contains the `WPS/` and `WRF/` folders, which will store most of the data.

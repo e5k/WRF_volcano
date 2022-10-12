@@ -350,6 +350,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#case-setup-wrf" class="md-nav__link">
+    Case setup / WRF
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -522,6 +529,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#case-setup-wrf" class="md-nav__link">
+    Case setup / WRF
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -671,6 +685,32 @@ P(Executable)</code></pre>
 <div class="admonition info">
 <p class="admonition-title">Using run_wps.sh</p>
 <p>All steps can be automatised by running <code>sbatch run_wps.sh</code></p>
+</div>
+<h3 id="case-setup-wrf">Case setup / WRF</h3>
+<p>📖 <a href="https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.4/users_guide_chap5.html#realcase">User guide</a></p>
+<ol>
+<li><code>cd ../WRF</code></li>
+<li>
+<p>Edit the <code>namelist.input</code> configuration file for <code>WRF</code> &rarr; refer to <a href="setup_namelist_input/">this page</a> for reference.</p>
+</li>
+<li>
+<p><code>srun real.exe</code></p>
+</li>
+</ol>
+<blockquote>
+<p>Reads the <code>met_em...</code> files and creates input and boundary files </p>
+<ul>
+<li>input files represent the atmospheric state at <span class="arithmatex">\(t=0\)</span> &rarr; <code>wrfinput_dD</code></li>
+<li>boundary files are tendencies (i.e., fluxes) at the border to represent future states &rarr; <code>wrfbdy_d01</code> &rarr; only outer domain</li>
+</ul>
+</blockquote>
+<ol>
+<li>Job submission with <code>sbatch wrf</code>
+    &gt; Output in <code>case_name/WRF/output</code></li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Using run_wrf.sh</p>
+<p>All steps can be automatised by running <code>sbatch run_wrf.sh</code>. Adapt the number of required CPU using <code>ntasks</code> and <code>-n</code> as needed. Remember than requesting too many processors can prevent the run to start/complete (see <a href="howto/#general-rules">this note</a>).</p>
 </div>
 
               

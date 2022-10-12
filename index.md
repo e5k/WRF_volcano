@@ -126,3 +126,26 @@ This section describes the steps required to setup the pre-processing part of `W
 !!! info "Using run_wps.sh"
 
     All steps can be automatised by running `sbatch run_wps.sh`
+
+### Case setup / WRF 
+
+📖 [User guide](https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.4/users_guide_chap5.html#realcase)
+
+1. `cd ../WRF`
+2. Edit the `namelist.input` configuration file for `WRF` &rarr; refer to [this page](setup_namelist_input.md) for reference.
+
+3. `srun real.exe`
+   
+   > Reads the `met_em...` files and creates input and boundary files 
+   >
+   > - input files represent the atmospheric state at $t=0$ &rarr; `wrfinput_dD`
+   > - boundary files are tendencies (i.e., fluxes) at the border to represent future states &rarr; `wrfbdy_d01` &rarr; only outer domain
+
+
+
+4. Job submission with `sbatch wrf`
+    > Output in `case_name/WRF/output`
+
+!!! info "Using run_wrf.sh"
+
+    All steps can be automatised by running `sbatch run_wrf.sh`. Adapt the number of required CPU using `ntasks` and `-n` as needed. Remember than requesting too many processors can prevent the run to start/complete (see [this note](howto.md#general-rules)).

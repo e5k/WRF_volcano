@@ -498,24 +498,16 @@
 <ol>
 <li>On the cluster, clone the <code>WRF-volcano</code> repository:
    <code>git clone https://github.com/e5k/WRF_volcano</code></li>
-<li>
-<p>Run <code>./setup_wrf.sh case_name</code>, where <code>case_name</code> is your project/case name. This will:</p>
-<ol>
-<li>Create a folder named <code>WRF_projects/case_name/</code> both on <code>HOME</code> and on <code>scratch</code>. </li>
+<li>Run <code>./setup_wrf.sh case_name</code>, where <code>case_name</code> is your project/case name (here, <code>Taal</code>). This will create a folder named <code>WRF_projects/case_name/</code> both on <code>HOME</code> and on <code>scratch</code>. <ul>
 <li>The folder on the <code>HOME</code> partition contains the config files (i.e., <code>namelist.*</code>) and are backed up.</li>
 <li>The folder on the <code>scratch</code> partition contains the <code>WPS/</code> and <code>WRF/</code> folders, which will store most of the data.</li>
-</ol>
+</ul>
 </li>
 </ol>
 <h3 id="overview-of-the-wrf-workflow">Overview of the WRF workflow</h3>
 <p>The process of running WRF consists of two steps:</p>
 <ol>
-<li>Pre-processing using the WRF Preprocessing System (<code>WPS</code>):</li>
-</ol>
-<blockquote>
-<p>WPS is a set of three programs whose collective role is to prepare input for real-data simulations</p>
-</blockquote>
-<ol>
+<li>Pre-processing using the WRF Preprocessing System (<code>WPS</code>):   </li>
 <li>Running <code>WRF</code>.</li>
 </ol>
 <pre class="mermaid"><code>flowchart TD
@@ -559,10 +551,13 @@ P(Executable)</code></pre>
 </ul>
 </div>
 <h3 id="setup-wps">Setup WPS</h3>
-<p>This section describes the steps required to setup the pre-processing part of <code>WRF</code>.</p>
+<p>This section describes the steps required to setup the pre-processing part of <code>WRF</code>. </p>
+<blockquote>
+<p><code>WPS</code> is a set of three programs whose collective role is to prepare input for real-data simulations</p>
+</blockquote>
 <p>📖 <a href="https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.4/users_guide_chap3.html">WPS user guide</a></p>
 <ol>
-<li><code>cd case_name/WPS</code> </li>
+<li>From the <code>scratch</code> partition, <code>cd case_name/WPS</code> </li>
 <li>Edit the <code>namelist.wps</code> configuration file for <code>WPS</code> &rarr; refer to <a href="../setup_namelist_wps/">this page</a> for reference</li>
 <li><code>module load GCC/10.3.0 OpenMPI/4.1.1 WPS</code></li>
 <li>

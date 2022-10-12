@@ -10,20 +10,15 @@ The case-study is the Feb 2020 eruption of [Taal volcano](https://volcano.si.edu
    ```
    git clone https://github.com/e5k/WRF_volcano
    ```
-2. Run `./setup_wrf.sh case_name`, where `case_name` is your project/case name. This will:
-
-    1. Create a folder named `WRF_projects/case_name/` both on `HOME` and on `scratch`. 
-    2. The folder on the `HOME` partition contains the config files (i.e., `namelist.*`) and are backed up.
-    3. The folder on the `scratch` partition contains the `WPS/` and `WRF/` folders, which will store most of the data.
+2. Run `./setup_wrf.sh case_name`, where `case_name` is your project/case name (here, `Taal`). This will create a folder named `WRF_projects/case_name/` both on `HOME` and on `scratch`. 
+    - The folder on the `HOME` partition contains the config files (i.e., `namelist.*`) and are backed up.
+    - The folder on the `scratch` partition contains the `WPS/` and `WRF/` folders, which will store most of the data.
 
 ### Overview of the WRF workflow
 
 The process of running WRF consists of two steps:
 
-1. Pre-processing using the WRF Preprocessing System (`WPS`):
-   
-   > WPS is a set of three programs whose collective role is to prepare input for real-data simulations
-
+1. Pre-processing using the WRF Preprocessing System (`WPS`):   
 2. Running `WRF`.
 
 ```mermaid
@@ -73,11 +68,13 @@ P(Executable)
 
 ### Setup WPS 
 
-This section describes the steps required to setup the pre-processing part of `WRF`.
+This section describes the steps required to setup the pre-processing part of `WRF`. 
+
+> `WPS` is a set of three programs whose collective role is to prepare input for real-data simulations
 
 📖 [WPS user guide](https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.4/users_guide_chap3.html)
 
-1. `cd case_name/WPS` 
+1. From the `scratch` partition, `cd case_name/WPS` 
 2. Edit the `namelist.wps` configuration file for `WPS` &rarr; refer to [this page](setup_namelist_wps.md) for reference
 3. `module load GCC/10.3.0 OpenMPI/4.1.1 WPS`
 4. `srun geogrid.exe`

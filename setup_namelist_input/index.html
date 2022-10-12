@@ -1,0 +1,957 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://e5k.github.io/WRF_volcano/setup_namelist_input/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.5">
+    
+    
+      
+        <title>WRF - WRF-Volcano</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2d9f7617.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="pink">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#setup-namelistinput" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="WRF-Volcano" class="md-header__button md-logo" aria-label="WRF-Volcano" data-md-component="logo">
+      
+  <img src="../img/volcano.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            WRF-Volcano
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              WRF
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="lime" data-md-color-accent="pink"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Tutorial
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../setup_namelist_wps/" class="md-tabs__link md-tabs__link--active">
+        Model setup
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../howto/" class="md-tabs__link">
+      How to
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="WRF-Volcano" class="md-nav__button md-logo" aria-label="WRF-Volcano" data-md-component="logo">
+      
+  <img src="../img/volcano.svg" alt="logo">
+
+    </a>
+    WRF-Volcano
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Tutorial
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Model setup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Model setup" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Model setup
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup_namelist_wps/" class="md-nav__link">
+        WPS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          WRF
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        WRF
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#time_control" class="md-nav__link">
+    &amp;time_control
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domains" class="md-nav__link">
+    &amp;domains
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#physics" class="md-nav__link">
+    &amp;physics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fdda" class="md-nav__link">
+    &amp;fdda
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamics" class="md-nav__link">
+    &amp;dynamics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bdy_control" class="md-nav__link">
+    &amp;bdy_control
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grib2" class="md-nav__link">
+    &amp;grib2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#namelist_quilt" class="md-nav__link">
+    &amp;namelist_quilt
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howto/" class="md-nav__link">
+        How to
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#time_control" class="md-nav__link">
+    &amp;time_control
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domains" class="md-nav__link">
+    &amp;domains
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#physics" class="md-nav__link">
+    &amp;physics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fdda" class="md-nav__link">
+    &amp;fdda
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamics" class="md-nav__link">
+    &amp;dynamics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bdy_control" class="md-nav__link">
+    &amp;bdy_control
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grib2" class="md-nav__link">
+    &amp;grib2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#namelist_quilt" class="md-nav__link">
+    &amp;namelist_quilt
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="setup-namelistinput">Setup namelist.input</h1>
+<p>📖 <a href="https://esrl.noaa.gov/gsd/wrfportal/namelist_input_options.html">User guide</a></p>
+<h2 id="time_control">&amp;time_control</h2>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>run_days</code>,   <code>run_hours</code>, <code>run_minutes</code>, <code>run_seconds</code></td>
+<td align="left">Total run time of the simulation. Usually set one of them and set the others to 0. One value.</td>
+</tr>
+<tr>
+<td align="right"><code>start_year</code>, <code>start_month</code>,   <code>start_day</code>,  <code>start_hour</code></td>
+<td align="left">Start date <sup id="fnref32:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>end_year</code>, <code>end_month</code>, <code>end_day</code>,  <code>end_hour</code></td>
+<td align="left">Same as start date<sup id="fnref31:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right">❗</td>
+<td align="left">The total run time needs to be ≤ to end-start dates. Start and end need to coincide with the timestamp of input meteorological data.</td>
+</tr>
+<tr>
+<td align="right"><code>interval_seconds</code></td>
+<td align="left">Interval of input data<sup id="fnref5:9"><a class="footnote-ref" href="#fn:9">4</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>input_from_file</code></td>
+<td align="left">Leave to <code>true</code> for every domain<sup id="fnref30:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>history_interval</code></td>
+<td align="left">Interval (min) at which history is output<sup id="fnref29:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>frames_per_outfile</code></td>
+<td align="left">Number of <code>history_interval</code> steps per NetCDF file<sup id="fnref28:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>restart</code></td>
+<td align="left">Logical, set to <code>.true.</code> if starting a new simulation from a previous run.</td>
+</tr>
+<tr>
+<td align="right"><code>restart_interval</code></td>
+<td align="left">Time (min) - see user guide.</td>
+</tr>
+<tr>
+<td align="right"><code>io_form_history</code>, <code>io_form_restart</code>, <code>io_form_input</code>, <code>io_form_boundary</code></td>
+<td align="left">Leave to <code>2</code> &rarr; NetCDF.</td>
+</tr>
+<tr>
+<td align="right"><code>auxinput1_inname</code></td>
+<td align="left">Location and naming of the <code>met_em</code> files.</td>
+</tr>
+<tr>
+<td align="right"><code>history_outname</code></td>
+<td align="left">Location and naming of output files.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Fall3d</p>
+<p>If you are planning on using Fall3d, adjust <code>frames_per_outfile</code> so all of the data is contained in <strong>one file</strong>.</p>
+</div>
+<h2 id="domains">&amp;domains</h2>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>time_step</code></td>
+<td align="left">Time step for integration in integer seconds (recommended 6*<code>dx</code> in km for a typical case).</td>
+</tr>
+<tr>
+<td align="right"><code>time_step_fract_num</code>, <code>time_step_fract_den</code></td>
+<td align="left">Numerator and denominator used to define fractions of time.</td>
+</tr>
+<tr>
+<td align="right"><code>max_dom</code></td>
+<td align="left">The number of domains.</td>
+</tr>
+<tr>
+<td align="right"><code>e_we</code>, <code>e_sn</code></td>
+<td align="left">Number of grid points per domain along <code>west-east</code> and <code>south-north</code> axes, one per domain<sup id="fnref27:6"><a class="footnote-ref" href="#fn:6">1</a></sup><sup id="fnref4:9"><a class="footnote-ref" href="#fn:9">4</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>e_vert</code></td>
+<td align="left">Number of vertical levels<sup id="fnref26:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>dzstretch_s</code></td>
+<td align="left">Leave as <code>1.1</code>.</td>
+</tr>
+<tr>
+<td align="right"><code>p_top_requested</code></td>
+<td align="left">Minimum pressure (Pa) defining max domain altitude.</td>
+</tr>
+<tr>
+<td align="right"><code>num_metgrid_levels</code></td>
+<td align="left">Number of vertical levels in the input data (i.e., 138 for ERA5).</td>
+</tr>
+<tr>
+<td align="right"><code>num_metgrid_soil_levels</code></td>
+<td align="left">Number of soil levels (i.e., 3 for ERA5).</td>
+</tr>
+<tr>
+<td align="right"><code>dx</code>=<code>dy</code></td>
+<td align="left">Grid spacing (m)<sup id="fnref25:6"><a class="footnote-ref" href="#fn:6">1</a></sup><sup id="fnref3:9"><a class="footnote-ref" href="#fn:9">4</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>grid_id</code></td>
+<td align="left">Id of the domain<sup id="fnref24:6"><a class="footnote-ref" href="#fn:6">1</a></sup>. ❗<code>grid_id</code> of outermost domain needs to be <code>1</code>.</td>
+</tr>
+<tr>
+<td align="right"><code>parent_id</code></td>
+<td align="left">Id of the parent domain<sup id="fnref23:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.  ❗<code>parent_id</code> of outermost domain needs to be <code>0</code>.</td>
+</tr>
+<tr>
+<td align="right"><code>i_parent_start</code>, <code>j_parent_start</code></td>
+<td align="left">Grid point of the lower left corner <strong>in the parent domain</strong> where child domain starts<sup id="fnref22:6"><a class="footnote-ref" href="#fn:6">1</a></sup><sup id="fnref2:9"><a class="footnote-ref" href="#fn:9">4</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>parent_grid_ratio</code></td>
+<td align="left">Grid ratio between parent and child domains. Needs to start with <code>1</code><sup id="fnref:9"><a class="footnote-ref" href="#fn:9">4</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>parent_time_step_ratio</code></td>
+<td align="left">Ratio between parent and child domains. Needs to start with <code>1</code> and needs to be ≥ than the equivalent <code>parent_grid_ratio</code>.</td>
+</tr>
+<tr>
+<td align="right"><code>feedback</code></td>
+<td align="left">Feedback from nested to parent domain (0/1).</td>
+</tr>
+<tr>
+<td align="right"><code>smooth_option</code></td>
+<td align="left">Whether the feedback data is smoothed.</td>
+</tr>
+<tr>
+<td align="right">/</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="physics">&amp;physics</h2>
+<p>Physical parametrisation. </p>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>physics_suite</code></td>
+<td align="left">Choice of the scheme.</td>
+</tr>
+<tr>
+<td align="right"><code>mp_physics</code></td>
+<td align="left">Hydrometeor microphysics, controls the formation of precipitations <sup id="fnref21:6"><a class="footnote-ref" href="#fn:6">1</a></sup><sup id="fnref7:7"><a class="footnote-ref" href="#fn:7">2</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>cu_physics</code></td>
+<td align="left">Cumulus physics, parametrises cumulus. Only used if <code>dx</code>≥10 km  <sup id="fnref20:6"><a class="footnote-ref" href="#fn:6">1</a></sup><sup id="fnref6:7"><a class="footnote-ref" href="#fn:7">2</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>ra_lw_physics</code></td>
+<td align="left">Long-wave radiation <sup id="fnref19:6"><a class="footnote-ref" href="#fn:6">1</a></sup><sup id="fnref5:7"><a class="footnote-ref" href="#fn:7">2</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>ra_sw_physics</code></td>
+<td align="left">Short-wave radiation <sup id="fnref18:6"><a class="footnote-ref" href="#fn:6">1</a></sup><sup id="fnref4:7"><a class="footnote-ref" href="#fn:7">2</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>bl_pbl_physics</code></td>
+<td align="left">Planetary boundary-layer parametrisation <sup id="fnref17:6"><a class="footnote-ref" href="#fn:6">1</a></sup><sup id="fnref3:7"><a class="footnote-ref" href="#fn:7">2</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>sf_sfclay_physics</code></td>
+<td align="left">Surface layer options <sup id="fnref16:6"><a class="footnote-ref" href="#fn:6">1</a></sup><sup id="fnref2:7"><a class="footnote-ref" href="#fn:7">2</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>sf_surface_physics</code></td>
+<td align="left">Land surface options  <sup id="fnref15:6"><a class="footnote-ref" href="#fn:6">1</a></sup><sup id="fnref:7"><a class="footnote-ref" href="#fn:7">2</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>radt</code></td>
+<td align="left">Radiation time step (min) <sup id="fnref14:6"><a class="footnote-ref" href="#fn:6">1</a></sup>. ❗ Computationally expensive, usually set to 30 min.</td>
+</tr>
+<tr>
+<td align="right"><code>bldt</code></td>
+<td align="left">Boundary layer time step (min) <sup id="fnref13:6"><a class="footnote-ref" href="#fn:6">1</a></sup><sup id="fnref2:8"><a class="footnote-ref" href="#fn:8">3</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>cudt</code></td>
+<td align="left">Cumulus time step (min) <sup id="fnref12:6"><a class="footnote-ref" href="#fn:6">1</a></sup><sup id="fnref:8"><a class="footnote-ref" href="#fn:8">3</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>icloud</code></td>
+<td align="left">Leave to <code>1</code>.</td>
+</tr>
+<tr>
+<td align="right"><code>num_land_cat</code></td>
+<td align="left">Number of land-use categories.</td>
+</tr>
+<tr>
+<td align="right"><code>sf_urban_physics</code></td>
+<td align="left">Urban canopy model <sup id="fnref11:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>fractional_seaice</code></td>
+<td align="left">Leave to default.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fdda">&amp;fdda</h2>
+<p>/</p>
+<h2 id="dynamics">&amp;dynamics</h2>
+<p>Model integration options.</p>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>hybrid_opt</code></td>
+<td align="left">Leave at <code>2</code>.</td>
+</tr>
+<tr>
+<td align="right"><code>w_damping</code></td>
+<td align="left">Manually prevent <code>w</code> from getting too big (0/1).</td>
+</tr>
+<tr>
+<td align="right"><code>diff_opt</code></td>
+<td align="left">Turbulence and mixing options  <sup id="fnref10:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>km_opt</code></td>
+<td align="left">Eddy coefficient option &rarr; controls diffusion     <sup id="fnref9:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>diff_6th_opt</code></td>
+<td align="left">6th order numerical diffusion &rarr; filters out numerical artifacts <sup id="fnref8:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>diff_6th_factor</code></td>
+<td align="left">Factor for <code>diff_6th_opt</code> <sup id="fnref7:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>base_temp</code></td>
+<td align="left">Base state sea-level temperature (K).</td>
+</tr>
+<tr>
+<td align="right"><code>damp_opt</code></td>
+<td align="left">Upper-level damping &rarr; adds a response layer at the domain top that gradually attenuates gravity waves.</td>
+</tr>
+<tr>
+<td align="right"><code>zdamp</code></td>
+<td align="left">Depth of damping layer from model top (m) <sup id="fnref6:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>dampcoef</code></td>
+<td align="left">Coefficient for damping <sup id="fnref5:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>khdif</code>, <code>kvdif</code></td>
+<td align="left">Horizontal and vertical diffusion. Only matters if <code>km_opt</code>=<code>1</code> <sup id="fnref4:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>non_hydrostatic</code></td>
+<td align="left">Logical, controls if the model is hydrostatic <sup id="fnref3:6"><a class="footnote-ref" href="#fn:6">1</a></sup>. ❗All domains should be the same.</td>
+</tr>
+<tr>
+<td align="right"><code>moist_adv_opt</code>, <code>scalar_adv_opt</code></td>
+<td align="left">Advection options <sup id="fnref2:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+<tr>
+<td align="right"><code>gwd_opt</code></td>
+<td align="left">Gravity wave drag <sup id="fnref:6"><a class="footnote-ref" href="#fn:6">1</a></sup>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="bdy_control">&amp;bdy_control</h2>
+<p>Boundary controls. </p>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><code>spec_bdy_width</code></td>
+<td align="left">Number of boundary grid points (int). Should be <code>5</code>.</td>
+</tr>
+<tr>
+<td align="right"><code>specified</code></td>
+<td align="left">Should be <code>.true.</code>.</td>
+</tr>
+<tr>
+<td align="right">/</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="grib2">&amp;grib2</h2>
+<p>/</p>
+<h2 id="namelist_quilt">&amp;namelist_quilt</h2>
+<p>/</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:6">
+<p>One per domain, model reads up to <code>max_dom</code> set in <code>&amp;domains</code>.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref6:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref7:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref8:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref9:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref10:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref11:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref12:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref13:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref14:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref15:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref16:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref17:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref18:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref19:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref20:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref21:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref22:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref23:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref24:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref25:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref26:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref27:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref28:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref29:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref30:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref31:6" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref32:6" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>A value of <code>-1</code> takes the default value of the scheme defined in <code>physics_suite</code>.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:7" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:7" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:7" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:7" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref6:7" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref7:7" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p><code>0</code> means every time step.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:8" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>Need to match values defined in <code>namelist.wps</code>.&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:9" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:9" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:9" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:9" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../setup_namelist_wps/" class="md-footer__link md-footer__link--prev" aria-label="Previous: WPS" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              WPS
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../howto/" class="md-footer__link md-footer__link--next" aria-label="Next: How to" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              How to
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      CC BY-NC-SA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "search": "../assets/javascripts/workers/search.bd0b6b67.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.467223ff.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

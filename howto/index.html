@@ -409,6 +409,53 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#error" class="md-nav__link">
+    Error
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modules" class="md-nav__link">
+    Modules
+  </a>
+  
+    <nav class="md-nav" aria-label="Modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#different-modules" class="md-nav__link">
+    Different modules
+  </a>
+  
+    <nav class="md-nav" aria-label="Different modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wrf" class="md-nav__link">
+    WRF:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncview" class="md-nav__link">
+    ncview
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -505,6 +552,53 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#error" class="md-nav__link">
+    Error
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modules" class="md-nav__link">
+    Modules
+  </a>
+  
+    <nav class="md-nav" aria-label="Modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#different-modules" class="md-nav__link">
+    Different modules
+  </a>
+  
+    <nav class="md-nav" aria-label="Different modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wrf" class="md-nav__link">
+    WRF:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncview" class="md-nav__link">
+    ncview
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -584,6 +678,16 @@
 </ul>
 </li>
 </ol>
+<h2 id="error">Error</h2>
+<p>Domain setup in <code>namelist.wps</code> is bigger than atmospheric data.
+<code>WARNING: Either SOILHGT or SOILGEO are required to create 3-d GHT field, which is required for a correct vertical interpolation in real.</code></p>
+<h2 id="modules">Modules</h2>
+<h3 id="different-modules">Different modules</h3>
+<p><code>WRF</code> and <code>ncview</code> require different versions of <code>OpenMPI</code> and <code>GCC</code>. Use <code>module spider moduleName</code> to check which dependencies to load and <code>module purge</code> to unload all loaded modules. </p>
+<h4 id="wrf">WRF:</h4>
+<p><code>module load GCC/10.3.0 OpenMPI/4.1.1 WPS</code></p>
+<h4 id="ncview">ncview</h4>
+<p><code>module load GCC/11.2.0 OpenMPI/4.1.1 ncview</code></p>
 
               
             </article>

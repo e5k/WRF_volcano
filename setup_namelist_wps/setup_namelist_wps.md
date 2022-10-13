@@ -1,7 +1,7 @@
 
 # Setup namelist.wps 
 
-📖 [Lesson](https://ral.ucar.edu/sites/default/files/public/Lesson-wps.html), [WPS user guide](https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_V3/user_guide_V3.9/users_guide_chap3.html#_How_to_Run)
+📖 [Lesson](https://ral.ucar.edu/sites/default/files/public/Lesson-wps.html), [WPS user guide](https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_V3/user_guide_V3.9/users_guide_chap3.html#_How_to_Run), [Variable list](https://esrl.noaa.gov/gsd/wrfportal/namelist_input_options.html)
 
 ## &share 
 
@@ -24,7 +24,7 @@
 |    `j_parent_start`[^1][^2] | `y` grid point within the parent domain at which the `ll` corner of the child domain starts |
 |                  `e_we`, `e_sn`[^1] | Number of grid points along w-e (`x`) and along s-n (`y`) axes [^3]. Must be divisible by  `parent_grid_ratio`+1                                                 |
 |         `geog_data_res`[^1] | Use `default` &rarr; terrestrial dataset used                                               |
-|               `dx`=`dy`[^4] | Grid spacing of the outermost domain                                                        |
+|               `dx`=`dy`[^4] | Grid spacing of the outermost domain (m)                                                      |
 |            `map_projection` | Map projection                                                                              |
 |        `ref_lat`, `ref_lon` | Reference of the center of the outermost domain                                             |
 |      `truelat1`, `truelat2` | To check, projection-specific                                                               |

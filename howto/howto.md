@@ -57,3 +57,28 @@ There are several ways to check the status of a run:
      - `w` values are not ridiculously large (±60 ms-1) and that `w`&rarr;0 close to the model top
      - There is no presence of waves indicating an unrealistic interaction with the boundary (e.g., vertical or horizontal waves)
 
+
+## Error 
+
+Domain setup in `namelist.wps` is bigger than atmospheric data.
+```
+WARNING: Either SOILHGT or SOILGEO are required to create 3-d GHT field, which is required for a correct vertical interpolation in real.
+```
+
+## Modules
+
+### Different modules
+
+`WRF` and `ncview` require different versions of `OpenMPI` and `GCC`. Use `module spider moduleName` to check which dependencies to load and `module purge` to unload all loaded modules. 
+
+#### WRF: 
+
+```
+module load GCC/10.3.0 OpenMPI/4.1.1 WPS
+```
+
+#### ncview 
+
+```
+module load GCC/11.2.0 OpenMPI/4.1.1 ncview
+```
